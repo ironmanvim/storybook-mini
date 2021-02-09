@@ -1,0 +1,60 @@
+const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
+
+const exclude = ["node_modules", ".git"];
+
+const findFilesOfType = async (directory = "./", type = ".html") => {
+    const files = [];
+    const dir = await fs.promises.opendir(directory);
+
+    for await (const dirent of dir) {
+        if (!exclude.includes(dirent.name)) {
+            if (dirent.isDirectory()) {
+                files.push(...await findFilesOfType(directory + dirent.name + "/", type));
+            } else if (dirent.name.match(new RegExp(`${type}$`))) {
+                files.push(directory + dirent.name);
+            }
+        }
+    }
+    return files;
+}
+
+const findStories = async () => {
+    let stories = await findFilesOfType("./src/", ".stories.js");
+    stories = stories.map(story => {
+        return "./" + story.slice(6);
+    });
+    return stories;
+}
+
+const addFilesToStoryCache = async () => {
+    const storyFiles = await findStories();
+    let storyCacheTemplate = '';
+    const ids = [];
+    for (let i = 0; i < storyFiles.length; i++) {
+        let id = `story_${i}`;
+        ids.push(id);
+        storyCacheTemplate += `import ${id}Default, * as ${id} from '${storyFiles[i]}'\n`;
+    }
+    storyCacheTemplate += `const all = [\n`;
+    for (let i = 0; i < ids.length; i++) {
+        storyCacheTemplate += `\
+    {
+        meta: ${ids[i]}Default, 
+        stories: Object.keys(${ids[i]}).flatMap(key => {
+            if (key === 'default') {
+                return [];
+            }
+            return ${ids[i]}[key];
+        }),
+    },\n`;
+    }
+    storyCacheTemplate += `];\n\nexport default all;\n`;
+
+    fs.writeFile("./src/storycache.js", storyCacheTemplate, (err) => {
+        if (err) throw err;
+        console.log('story cache created!');
+    })
+}
+
+addFilesToStoryCache()
