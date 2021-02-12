@@ -1,6 +1,9 @@
-export const StoryFolderView = ({ folders = [], canGoBack, onBackClick, onFolderClick }) => {
+export const StoryFolderView = ({ path, folders = [], canGoBack, onBackClick, onFolderClick }) => {
     return (
         <div>
+            <div>
+                {path}
+            </div>
             <div>
                 {
                     canGoBack && (
@@ -16,7 +19,7 @@ export const StoryFolderView = ({ folders = [], canGoBack, onBackClick, onFolder
                 {folders.map(folder => {
                     return (
                         <button key={folder} style={{
-                            border: "1px solid red",
+                            // border: "1px solid red",
                         }} onClick={() => {
                             onFolderClick(folder);
                         }}>
