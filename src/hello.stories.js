@@ -1,5 +1,5 @@
 export default {
-    title: "Hello World",
+    title: "Chat/Hello World",
 }
 
 let count = 0;

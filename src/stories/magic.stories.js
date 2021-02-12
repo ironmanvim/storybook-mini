@@ -1,11 +1,11 @@
 export default {
-    title: "This is a test",
+    title: "Chat/This is a test",
 };
 
 export const Example = () => {
     return (
         <div>
-            Magic dsdsada dhsadhasgdhg dsdsdsds
+            Magic dsdsada dhsadhasgdhg  fdfds f sdf sdf dsf sdfsdf dsffdsfdsfsfdsfsbbdbsh
         </div>
     )
 };
