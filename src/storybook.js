@@ -1,5 +1,4 @@
 import { useState } from "react";
-import storybook from "./storycache";
 import { StoryFolderView } from "./StoryFolderView";
 
 const NoStorySelected = () => {
@@ -10,12 +9,14 @@ const NoStorySelected = () => {
     )
 }
 
-export const Storybook = () => {
+export const Storybook = ({ children, storyCache }) => {
+    const [showStory, setShowStory] = useState(true);
+    const [showChildren, setShowChildren] = useState(false);
     const [showFolderView, setShowFolderView] = useState(true);
     const [selectedFolder, setSelectedFolder] = useState("");
     const [SelectedStory, setSelectedStory] = useState(() => NoStorySelected);
 
-    const storyGallery = storybook.reduce((accumulator, currentValue) => {
+    const storyGallery = storyCache.reduce((accumulator, currentValue) => {
         const storyPath = currentValue.meta.title.split("/");
         console.log(storyPath);
 
@@ -50,6 +51,7 @@ export const Storybook = () => {
 
     return (
         <div>
+            {showChildren && children}
             <div style={{
                 position: "fixed",
                 bottom: "0px",
@@ -59,6 +61,16 @@ export const Storybook = () => {
                     setShowFolderView(!showFolderView);
                 }}>
                     {showFolderView ? "Hide Folders" : "Show Folders"}
+                </button>
+                <button onClick={() => {
+                    setShowChildren(!showChildren);
+                }}>
+                    {showChildren ? "Hide App" : "Show App"}
+                </button>
+                <button onClick={() => {
+                    setShowStory(!showStory);
+                }}>
+                    {showStory ? "Hide Story" : "Show Story"}
                 </button>
             </div>
             {
@@ -87,7 +99,10 @@ export const Storybook = () => {
                     }}
                 />
             }
-            <SelectedStory />
+            {
+                showStory &&
+                <SelectedStory />
+            }
         </div>
     )
 }
