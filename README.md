@@ -5,8 +5,20 @@ A miniature version of storybook developed for react
 ## Usage
 Before using storybook in your app you have to generate storycache which storybook will be using to display the stories.
 
+Add the following to the package.json
+```json
+{
+    ...,
+    "scripts": {
+        ...,
+        "build-storycache": "build-storycache"
+    }
+    ...,
+}
+```
+
 Run the following command
-`build-storycache`
+`npm run build-storycache`
 
 ---
 
