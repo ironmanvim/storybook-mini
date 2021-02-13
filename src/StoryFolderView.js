@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const StoryFolderView = ({ path, folders = [], canGoBack, onBackClick, onFolderClick }) => {
     return (
         <div>
