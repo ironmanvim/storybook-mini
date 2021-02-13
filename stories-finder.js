@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const exclude = ["node_modules", ".git"];
 
-const findFilesOfType = async (directory = "./", type = ".html") => {
+const findFilesOfType = async(directory = "./", type = ".html") => {
     const files = [];
     const dir = await fs.promises.opendir(directory);
 
@@ -19,7 +19,7 @@ const findFilesOfType = async (directory = "./", type = ".html") => {
     return files;
 }
 
-const findStories = async () => {
+const findStories = async() => {
     let stories = await findFilesOfType("./src/", ".stories.js");
     stories = stories.map(story => {
         return "./" + story.slice(6);
@@ -27,7 +27,7 @@ const findStories = async () => {
     return stories;
 }
 
-const addFilesToStoryCache = async () => {
+const addFilesToStoryCache = async() => {
     const storyFiles = await findStories();
     let storyCacheTemplate = '';
     const ids = [];
