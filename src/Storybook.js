@@ -10,6 +10,7 @@ const NoStorySelected = () => {
 }
 
 export const Storybook = ({ children, storyCache }) => {
+    const [showMenu, setShowMenu] = useState(true);
     const [showStory, setShowStory] = useState(true);
     const [showChildren, setShowChildren] = useState(false);
     const [showFolderView, setShowFolderView] = useState(true);
@@ -57,35 +58,50 @@ export const Storybook = ({ children, storyCache }) => {
                 bottom: "0px",
                 right: "0px",
             }}>
+                {
+                    showMenu &&
+                    <>
+                        <button style={{
+                            border: "1px solid gray",
+                            padding: "5px 10px",
+                            background: "gray",
+                            color: "white",
+                        }} onClick={() => {
+                            setShowFolderView(!showFolderView);
+                        }}>
+                            {showFolderView ? "Hide Folders" : "Show Folders"}
+                        </button>
+                        <button style={{
+                            border: "1px solid gray",
+                            padding: "5px 10px",
+                            background: "gray",
+                            color: "white",
+                        }} onClick={() => {
+                            setShowChildren(!showChildren);
+                        }}>
+                            {showChildren ? "Hide App" : "Show App"}
+                        </button>
+                        <button style={{
+                            border: "1px solid gray",
+                            padding: "5px 10px",
+                            background: "gray",
+                            color: "white",
+                        }} onClick={() => {
+                            setShowStory(!showStory);
+                        }}>
+                            {showStory ? "Hide Story" : "Show Story"}
+                        </button>
+                    </>
+                }
                 <button style={{
                     border: "1px solid gray",
                     padding: "5px 10px",
                     background: "gray",
                     color: "white",
                 }} onClick={() => {
-                    setShowFolderView(!showFolderView);
+                    setShowMenu(!showMenu);
                 }}>
-                    {showFolderView ? "Hide Folders" : "Show Folders"}
-                </button>
-                <button style={{
-                    border: "1px solid gray",
-                    padding: "5px 10px",
-                    background: "gray",
-                    color: "white",
-                }} onClick={() => {
-                    setShowChildren(!showChildren);
-                }}>
-                    {showChildren ? "Hide App" : "Show App"}
-                </button>
-                <button style={{
-                    border: "1px solid gray",
-                    padding: "5px 10px",
-                    background: "gray",
-                    color: "white",
-                }} onClick={() => {
-                    setShowStory(!showStory);
-                }}>
-                    {showStory ? "Hide Story" : "Show Story"}
+                    {showStory ? "🠖" : "🠔"}
                 </button>
             </div>
             {
@@ -118,6 +134,6 @@ export const Storybook = ({ children, storyCache }) => {
                 showStory &&
                 <SelectedStory />
             }
-        </div>
+        </div >
     )
 }
