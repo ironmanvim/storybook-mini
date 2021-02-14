@@ -37,9 +37,9 @@ const addFilesToStoryCache = async () => {
     for (let i = 0; i < storyFiles.length; i++) {
         let id = `story_${i}`;
         ids.push(id);
-        storyCacheTemplate += `import ${id}Default, * as ${id} from '${storyFiles[i]}'\n\n`;
+        storyCacheTemplate += `import ${id}Default, * as ${id} from '${storyFiles[i]}'\n`;
     }
-    storyCacheTemplate += `const all = [\n`;
+    storyCacheTemplate += `\nconst all = [\n`;
     for (let i = 0; i < ids.length; i++) {
         storyCacheTemplate += `\
     {
@@ -48,7 +48,10 @@ const addFilesToStoryCache = async () => {
             if (key === 'default') {
                 return [];
             }
-            return React.cloneElement(${ids[i]}[key], ${ids[i]}[key].args ?? {});
+            const Story = () => React.cloneElement(${ids[i]}[key], ${ids[i]}[key].args ?? {});
+            Story.name = ${ids[i]}[key].name;
+            
+            return Story;
         }),
     },\n`;
     }
