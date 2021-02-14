@@ -48,7 +48,7 @@ const addFilesToStoryCache = async () => {
             if (key === 'default') {
                 return [];
             }
-            const Story = () => React.cloneElement(${ids[i]}[key], ${ids[i]}[key].args ?? {});
+            const Story = () => ${ids[i]}[key](${ids[i]}[key].args);
 
             return {
                 name: ${ids[i]}[key].name,
