@@ -88,7 +88,7 @@ export const Storybook = ({ children, storyCache }) => {
                                 return `${prevFolder}/${folder}`;
                             });
                         } else {
-                            setSelectedStory(() => currentFolder.find(story => story.name === folder));
+                            setSelectedStory(() => currentFolder.find(story => story.name === folder).Story);
                         }
                     }}
                     onBackClick={() => {
