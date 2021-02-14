@@ -32,7 +32,7 @@ const findStories = async () => {
 
 const addFilesToStoryCache = async () => {
     const storyFiles = await findStories();
-    let storyCacheTemplate = 'import React from "react"\n\n';
+    let storyCacheTemplate = '';
     const ids = [];
     for (let i = 0; i < storyFiles.length; i++) {
         let id = `story_${i}`;
