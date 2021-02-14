@@ -2,31 +2,35 @@ const fs = require('fs');
 
 const exclude = ["node_modules", ".git"];
 
-const findFilesOfType = async(directory = "./", type = ".html") => {
+const findFilesOfType = async (directory = "./", types = []) => {
     const files = [];
     const dir = await fs.promises.opendir(directory);
 
     for await (const dirent of dir) {
         if (!exclude.includes(dirent.name)) {
             if (dirent.isDirectory()) {
-                files.push(...await findFilesOfType(directory + dirent.name + "/", type));
-            } else if (dirent.name.match(new RegExp(`${type}$`))) {
-                files.push(directory + dirent.name);
+                files.push(...await findFilesOfType(directory + dirent.name + "/", types));
+            } else {
+                types.forEach(type => {
+                    if (dirent.name.match(new RegExp(`${type}$`))) {
+                        files.push(directory + dirent.name);
+                    }
+                })
             }
         }
     }
     return files;
 }
 
-const findStories = async() => {
-    let stories = await findFilesOfType("./src/", ".stories.js");
+const findStories = async () => {
+    let stories = await findFilesOfType("./src/", [".stories.js", ".stories.ts", ".stories.jsx", ".stories.tsx"]);
     stories = stories.map(story => {
         return "./" + story.slice(6);
     });
     return stories;
 }
 
-const addFilesToStoryCache = async() => {
+const addFilesToStoryCache = async () => {
     const storyFiles = await findStories();
     let storyCacheTemplate = '';
     const ids = [];
