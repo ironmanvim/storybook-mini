@@ -32,12 +32,12 @@ const findStories = async () => {
 
 const addFilesToStoryCache = async () => {
     const storyFiles = await findStories();
-    let storyCacheTemplate = '';
+    let storyCacheTemplate = 'import React from "react"\n\n';
     const ids = [];
     for (let i = 0; i < storyFiles.length; i++) {
         let id = `story_${i}`;
         ids.push(id);
-        storyCacheTemplate += `import ${id}Default, * as ${id} from '${storyFiles[i]}'\n`;
+        storyCacheTemplate += `import ${id}Default, * as ${id} from '${storyFiles[i]}'\n\n`;
     }
     storyCacheTemplate += `const all = [\n`;
     for (let i = 0; i < ids.length; i++) {
@@ -48,7 +48,7 @@ const addFilesToStoryCache = async () => {
             if (key === 'default') {
                 return [];
             }
-            return ${ids[i]}[key];
+            return React.cloneElement(${ids[i]}[key], ${ids[i]}[key].args ?? {});
         }),
     },\n`;
     }
