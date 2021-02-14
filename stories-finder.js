@@ -51,7 +51,7 @@ const addFilesToStoryCache = async () => {
             const Story = () => ${ids[i]}[key](${ids[i]}[key].args);
 
             return {
-                name: ${ids[i]}[key].name,
+                name: key,
                 Story
             };
         }),
