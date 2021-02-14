@@ -57,17 +57,32 @@ export const Storybook = ({ children, storyCache }) => {
                 bottom: "0px",
                 right: "0px",
             }}>
-                <button onClick={() => {
+                <button style={{
+                    border: "1px solid gray",
+                    padding: "5px 10px",
+                    background: "gray",
+                    color: "white",
+                }} onClick={() => {
                     setShowFolderView(!showFolderView);
                 }}>
                     {showFolderView ? "Hide Folders" : "Show Folders"}
                 </button>
-                <button onClick={() => {
+                <button style={{
+                    border: "1px solid gray",
+                    padding: "5px 10px",
+                    background: "gray",
+                    color: "white",
+                }} onClick={() => {
                     setShowChildren(!showChildren);
                 }}>
                     {showChildren ? "Hide App" : "Show App"}
                 </button>
-                <button onClick={() => {
+                <button style={{
+                    border: "1px solid gray",
+                    padding: "5px 10px",
+                    background: "gray",
+                    color: "white",
+                }} onClick={() => {
                     setShowStory(!showStory);
                 }}>
                     {showStory ? "Hide Story" : "Show Story"}
