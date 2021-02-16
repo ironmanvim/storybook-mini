@@ -8,17 +8,18 @@ Before using storybook in your app you have to generate storycache which storybo
 Add the following to the package.json
 ```json
 {
-    ...
     "scripts": {
-        ...
-        "build-storycache": "build-storycache"
+        "build-storycache": "build-storycache",
+        "watch-storycache": "build-storycache -w"
     }
-    ...
 }
 ```
 
 Run the following command
-`npm run build-storycache`
+
+`npm run build-storycache` - for building storycache
+
+`npm run watch-storycache` - for watching storycache
 
 ---
 
@@ -37,7 +38,3 @@ export default function App() {
     )
 }
 ```
-
-## Note
-
-If you create a new `.stories.js`. You should run `build-storycache`.
