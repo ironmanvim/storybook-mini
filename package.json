@@ -3,6 +3,8 @@
     "version": "0.0.19",
     "private": false,
     "main": "./dist/index.js",
+    "homepage": "http://github.com/ironmanvim/storybook-mini#readme",
+    "repository": "http://github.com/ironmanvim/storybook-mini",
     "bin": {
         "build-storycache": "bin/build-storycache.js"
     },
