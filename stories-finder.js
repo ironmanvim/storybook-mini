@@ -1,4 +1,5 @@
 const fs = require('fs');
+const chokidar = require("chokidar");
 
 const exclude = ["node_modules", ".git"];
 
@@ -65,4 +66,18 @@ const addFilesToStoryCache = async () => {
     })
 }
 
-addFilesToStoryCache()
+if (process.argv[2] === "-w" || process.argv[2] === "--watch") {
+    console.log("Watching files");
+
+    const watcher = chokidar.watch("./", {
+        ignored: new RegExp(`(${exclude.join('|')})`),
+    });
+
+    watcher.on("add", () => {
+        addFilesToStoryCache();
+    }).on("unlink", () => {
+        addFilesToStoryCache();
+    });
+} else {
+    addFilesToStoryCache();
+}

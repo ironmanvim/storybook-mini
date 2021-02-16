@@ -103,33 +103,33 @@ export const Storybook = ({ children, storyCache }) => {
                 }}>
                     {showStory ? "🠖" : "🠔"}
                 </button>
-            </div>
-            {
-                showFolderView &&
-                <StoryFolderView
-                    path={selectedFolder}
-                    folders={Array.isArray(currentFolder) ? currentFolder.map(item => item.name) : Object.keys(currentFolder)}
-                    canGoBack={selectedFolder !== ""}
-                    onFolderClick={(folder) => {
-                        if (!Array.isArray(currentFolder)) {
+                {
+                    showFolderView &&
+                    <StoryFolderView
+                        path={selectedFolder}
+                        folders={Array.isArray(currentFolder) ? currentFolder.map(item => item.name) : Object.keys(currentFolder)}
+                        canGoBack={selectedFolder !== ""}
+                        onFolderClick={(folder) => {
+                            if (!Array.isArray(currentFolder)) {
+                                setSelectedFolder(prevFolder => {
+                                    if (prevFolder === "") {
+                                        return folder;
+                                    }
+                                    return `${prevFolder}/${folder}`;
+                                });
+                            } else {
+                                setSelectedStory(() => currentFolder.find(story => story.name === folder).Story);
+                            }
+                        }}
+                        onBackClick={() => {
                             setSelectedFolder(prevFolder => {
-                                if (prevFolder === "") {
-                                    return folder;
-                                }
-                                return `${prevFolder}/${folder}`;
-                            });
-                        } else {
-                            setSelectedStory(() => currentFolder.find(story => story.name === folder).Story);
-                        }
-                    }}
-                    onBackClick={() => {
-                        setSelectedFolder(prevFolder => {
-                            const folderSplit = prevFolder.split("/")
-                            return folderSplit.slice(0, folderSplit.length - 1).join("/");
-                        })
-                    }}
-                />
-            }
+                                const folderSplit = prevFolder.split("/")
+                                return folderSplit.slice(0, folderSplit.length - 1).join("/");
+                            })
+                        }}
+                    />
+                }
+            </div>
             {
                 showStory &&
                 <SelectedStory />
