@@ -5,6 +5,8 @@
     "main": "./dist/index.js",
     "homepage": "http://github.com/ironmanvim/storybook-mini#readme",
     "repository": "http://github.com/ironmanvim/storybook-mini",
+    "keywords": ["storybook", "storybook mini"],
+    "license": "MIT",
     "bin": {
         "build-storycache": "bin/build-storycache.js"
     },
