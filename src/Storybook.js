@@ -50,6 +50,8 @@ export const Storybook = ({ children, storyCache }) => {
 
     console.log(currentFolder);
 
+    const RealStory = () => SelectedStory(SelectedStory.args);
+
     return (
         <div>
             {showChildren && children}
@@ -119,8 +121,8 @@ export const Storybook = ({ children, storyCache }) => {
                                 });
                             } else {
                                 setSelectedStory(() => {
-                                    const storySearch = currentFolder.find(story => story.name === folder);
-                                    return () => storySearch.Story(storySearch.Story.args);
+                                    const storySearch = currentFolder.find(story => story.name === folder).Story;
+                                    return storySearch;
                                 });
                             }
                         }}
@@ -135,7 +137,7 @@ export const Storybook = ({ children, storyCache }) => {
             </div>
             {
                 showStory &&
-                <SelectedStory />
+                <RealStory />
             }
         </div >
     )
