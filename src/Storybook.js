@@ -50,8 +50,6 @@ export const Storybook = ({ children, storyCache }) => {
 
     console.log(currentFolder);
 
-    const RealStory = <SelectedStory {...SelectedStory.args}/>
-
     return (
         <div>
             {showChildren && children}
@@ -137,7 +135,7 @@ export const Storybook = ({ children, storyCache }) => {
             </div>
             {
                 showStory &&
-                {RealStory}
+                <SelectedStory/>
             }
         </div >
     )
