@@ -127,17 +127,17 @@ export const Storybook = ({ children, storyCache }) => {
                             }
                         }}
                         onBackClick={() => {
-                    setSelectedFolder(prevFolder => {
-                        const folderSplit = prevFolder.split("/")
-                        return folderSplit.slice(0, folderSplit.length - 1).join("/");
-                    })
-                }}
+                            setSelectedFolder(prevFolder => {
+                                const folderSplit = prevFolder.split("/")
+                                return folderSplit.slice(0, folderSplit.length - 1).join("/");
+                            })
+                        }}
                     />
                 }
             </div>
             {
                 showStory &&
-                <RealStory/>
+                {RealStory}
             }
         </div >
     )
