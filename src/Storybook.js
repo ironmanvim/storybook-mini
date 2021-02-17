@@ -137,7 +137,7 @@ export const Storybook = ({ children, storyCache }) => {
             </div>
             {
                 showStory &&
-                <RealStory/>
+                {RealStory}
             }
         </div >
     )
