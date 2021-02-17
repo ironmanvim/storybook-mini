@@ -50,7 +50,7 @@ export const Storybook = ({ children, storyCache }) => {
 
     console.log(currentFolder);
 
-    const realStory = SelectedStory(SelectedStory.args);
+    const realStory = SelectedStory;
 
     return (
         <div>
