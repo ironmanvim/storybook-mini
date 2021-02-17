@@ -50,7 +50,7 @@ export const Storybook = ({ children, storyCache }) => {
 
     console.log(currentFolder);
 
-    const RealStory = useCallback(() => SelectedStory(SelectedStory.args), [SelectedStory]);
+    const realStory = SelectedStory[SelectedStory.args];
 
     return (
         <div>
@@ -137,7 +137,7 @@ export const Storybook = ({ children, storyCache }) => {
             </div>
             {
                 showStory &&
-                <RealStory />
+                realStory
             }
         </div >
     )
