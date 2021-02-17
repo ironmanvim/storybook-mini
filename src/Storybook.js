@@ -118,15 +118,18 @@ export const Storybook = ({ children, storyCache }) => {
                                     return `${prevFolder}/${folder}`;
                                 });
                             } else {
-                                setSelectedStory(() => () => currentFolder.find(story => story.name === folder).Story);
+                                setSelectedStory(() => {
+                                    const storySearch = currentFolder.find(story => story.name === folder);
+                                    return () => storySearch(storySearch.args);
+                                });
                             }
                         }}
                         onBackClick={() => {
-                            setSelectedFolder(prevFolder => {
-                                const folderSplit = prevFolder.split("/")
-                                return folderSplit.slice(0, folderSplit.length - 1).join("/");
-                            })
-                        }}
+                    setSelectedFolder(prevFolder => {
+                        const folderSplit = prevFolder.split("/")
+                        return folderSplit.slice(0, folderSplit.length - 1).join("/");
+                    })
+                }}
                     />
                 }
             </div>
