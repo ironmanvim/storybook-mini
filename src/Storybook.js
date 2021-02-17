@@ -1,4 +1,4 @@
-import React, { cloneElement, useState } from "react";
+import React, { useState } from "react";
 import { StoryFolderView } from "./StoryFolderView";
 
 const NoStorySelected = () => {
@@ -50,7 +50,7 @@ export const Storybook = ({ children, storyCache }) => {
 
     console.log(currentFolder);
 
-    const RealStory = cloneElement(SelectedStory, SelectedStory.args);
+    const RealStory = <Storybook {...SelectedStory.args}/>
 
     return (
         <div>
@@ -137,7 +137,7 @@ export const Storybook = ({ children, storyCache }) => {
             </div>
             {
                 showStory &&
-                {RealStory}
+                <RealStory/>
             }
         </div >
     )
