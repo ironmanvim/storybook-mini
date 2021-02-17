@@ -120,7 +120,7 @@ export const Storybook = ({ children, storyCache }) => {
                             } else {
                                 setSelectedStory(() => {
                                     const storySearch = currentFolder.find(story => story.name === folder);
-                                    return () => storySearch(storySearch.args);
+                                    return () => storySearch.Story(storySearch.Story.args);
                                 });
                             }
                         }}
