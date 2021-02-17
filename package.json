@@ -1,6 +1,6 @@
 {
     "name": "storybook-mini",
-    "version": "0.0.21",
+    "version": "0.0.22",
     "private": false,
     "main": "./dist/index.js",
     "homepage": "http://github.com/ironmanvim/storybook-mini#readme",
