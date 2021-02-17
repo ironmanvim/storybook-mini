@@ -15,7 +15,7 @@ export const Storybook = ({ children, storyCache }) => {
     const [showChildren, setShowChildren] = useState(false);
     const [showFolderView, setShowFolderView] = useState(true);
     const [selectedFolder, setSelectedFolder] = useState("");
-    const [SelectedStory, setSelectedStory] = useState(NoStorySelected);
+    const [SelectedStory, setSelectedStory] = useState(() => NoStorySelected);
 
     const storyGallery = storyCache.reduce((accumulator, currentValue) => {
         const storyPath = currentValue.meta.title.split("/");
