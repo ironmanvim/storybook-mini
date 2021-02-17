@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { StoryFolderView } from "./StoryFolderView";
 
 const NoStorySelected = () => {
@@ -15,7 +15,7 @@ export const Storybook = ({ children, storyCache }) => {
     const [showChildren, setShowChildren] = useState(false);
     const [showFolderView, setShowFolderView] = useState(true);
     const [selectedFolder, setSelectedFolder] = useState("");
-    const [SelectedStory, setSelectedStory] = useState(() => NoStorySelected);
+    const [SelectedStory, setSelectedStory] = useState(NoStorySelected);
 
     const storyGallery = storyCache.reduce((accumulator, currentValue) => {
         const storyPath = currentValue.meta.title.split("/");
@@ -50,7 +50,7 @@ export const Storybook = ({ children, storyCache }) => {
 
     console.log(currentFolder);
 
-    const realStory = SelectedStory[SelectedStory.args];
+    const realStory = SelectedStory(SelectedStory.args);
 
     return (
         <div>
