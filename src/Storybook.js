@@ -135,7 +135,7 @@ export const Storybook = ({ children, storyCache }) => {
             </div>
             {
                 showStory &&
-                <SelectedStory/>
+                <SelectedStory {...(SelectedStory.args ?? {})}/>
             }
         </div >
     )
