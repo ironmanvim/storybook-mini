@@ -49,7 +49,7 @@ const addFilesToStoryCache = async () => {
             if (key === 'default') {
                 return [];
             }
-            const Story = () => ${ids[i]}[key](${ids[i]}[key].args);
+            const Story = ${ids[i]}[key](${ids[i]}[key].args);
 
             return {
                 name: key,
