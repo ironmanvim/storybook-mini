@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { StoryFolderView } from "./StoryFolderView";
 
 const NoStorySelected = () => {
@@ -50,7 +50,7 @@ export const Storybook = ({ children, storyCache }) => {
 
     console.log(currentFolder);
 
-    const RealStory = () => SelectedStory(SelectedStory.args);
+    const RealStory = useCallback(() => SelectedStory(SelectedStory.args), [SelectedStory]);
 
     return (
         <div>
